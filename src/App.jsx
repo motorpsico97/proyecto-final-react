@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import MainLayout from './components/MainLayout';
 import ItemListContainer from './components/ItemListContainer';
+import ProductsWithFilters from './components/ProductsWithFilters';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Cart from './pages/Cart';
 import CheckoutForm from './components/CheckoutForm';
@@ -21,10 +22,10 @@ function App() {
         <Routes>
           {/* Rutas con layout (NavBar visible) */}
           <Route element={<MainLayout />}>
-              <Route path="/" element={<ItemListContainer />} />
-              <Route path="/category/:categoryId" element={<ItemListContainer />} />
-              <Route path="/marca/:marca" element={<ItemListContainer />} />
-              <Route path="/genero/:genero" element={<ItemListContainer />} />
+              <Route path="/" element={<ProductsWithFilters />} />
+              <Route path="/category/:categoryId" element={<ProductsWithFilters />} />
+              <Route path="/marca/:marca" element={<ProductsWithFilters />} />
+              <Route path="/genero/:genero" element={<ProductsWithFilters />} />
               <Route path="/item/:id" element={<ItemDetailContainer />} />
               <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<CheckoutForm />} />
