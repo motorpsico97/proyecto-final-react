@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { useParams, Navigate } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import ItemList from './ItemList';
 import '../styles/ItemListContainer.css';
@@ -8,41 +8,76 @@ import '../styles/ItemListContainer.css';
 const ItemListContainer = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [notFound, setNotFound] = useState(false);
+    const [validOptions, setValidOptions] = useState({
+        categories: [],
+        marcas: [],
+        generos: []
+    });
     const { categoryId, marca, genero } = useParams();
 
     useEffect(() => {
         setLoading(true);
+        setNotFound(false);
 
         const fetchProducts = async () => {
             try {
                 const productsRef = collection(db, 'items');
                 
+                // Primero obtenemos todos los productos para validar las opciones disponibles
+                const allSnapshot = await getDocs(productsRef);
+                const allDocs = allSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                
+                // Extraer valores únicos
+                const uniqueCategories = [...new Set(allDocs.map(item => item.categoryId).filter(Boolean))];
+                const uniqueMarcas = [...new Set(allDocs.map(item => item.marca).filter(Boolean))];
+                const uniqueGeneros = [...new Set(allDocs.map(item => item.genero).filter(Boolean))];
+                
+                setValidOptions({
+                    categories: uniqueCategories,
+                    marcas: uniqueMarcas,
+                    generos: uniqueGeneros
+                });
+                
                 if (categoryId) {
+                    const decodedCategory = decodeURIComponent(categoryId);
+                    
+                    if (!uniqueCategories.includes(decodedCategory)) {
+                        setNotFound(true);
+                        return;
+                    }
+                    
                     // Filtrar por categoría
-                    const q = query(productsRef, where('categoryId', '==', categoryId));
-                    const snapshot = await getDocs(q);
-                    const productsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    setProducts(productsData);
-                    document.title = `${categoryId} | Shoes Store`;
+                    const filteredProducts = allDocs.filter(item => item.categoryId === decodedCategory);
+                    setProducts(filteredProducts);
+                    document.title = `${decodedCategory} | Shoes Store`;
                 } else if (marca) {
+                    const decodedBrand = decodeURIComponent(marca);
+                    
+                    if (!uniqueMarcas.includes(decodedBrand)) {
+                        setNotFound(true);
+                        return;
+                    }
+                    
                     // Filtrar por marca
-                    const q = query(productsRef, where('marca', '==', marca));
-                    const snapshot = await getDocs(q);
-                    const productsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    setProducts(productsData);
-                    document.title = `${marca} | Shoes Store`;
+                    const filteredProducts = allDocs.filter(item => item.marca === decodedBrand);
+                    setProducts(filteredProducts);
+                    document.title = `${decodedBrand} | Shoes Store`;
                 } else if (genero) {
+                    const decodedGender = decodeURIComponent(genero);
+                    
+                    if (!uniqueGeneros.includes(decodedGender)) {
+                        setNotFound(true);
+                        return;
+                    }
+                    
                     // Filtrar por género
-                    const q = query(productsRef, where('genero', '==', genero));
-                    const snapshot = await getDocs(q);
-                    const productsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    setProducts(productsData);
-                    document.title = `${genero} | Shoes Store`;
+                    const filteredProducts = allDocs.filter(item => item.genero === decodedGender);
+                    setProducts(filteredProducts);
+                    document.title = `${decodedGender} | Shoes Store`;
                 } else {
                     // Mostrar todos los productos
-                    const snapshot = await getDocs(productsRef);
-                    const productsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    setProducts(productsData);
+                    setProducts(allDocs);
                     document.title = 'Inicio | Shoes Store';
                 }
             } catch (error) {
@@ -58,6 +93,11 @@ const ItemListContainer = () => {
 
     if (loading) {
         return <div className="loading-message">Cargando productos...</div>;
+    }
+
+    // Si se detectó una ruta inválida, redirigir al Error404
+    if (notFound) {
+        return <Navigate to="/404" replace />;
     }
 
     if (products.length === 0) {
