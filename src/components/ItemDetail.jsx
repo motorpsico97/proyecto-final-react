@@ -28,6 +28,18 @@ const ItemDetail = ({ product }) => {
     const sizes = product?.talles && typeof product.talles === 'object' 
         ? Object.keys(product.talles).filter(key => key !== 'valor' && key !== 'stock')
         : [];
+
+    // Manejar tecla Escape para cerrar el modal
+    useEffect(() => {
+        const handleEscape = (event) => {
+            if (event.key === 'Escape' && showStockSummary) {
+                setShowStockSummary(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscape);
+        return () => document.removeEventListener('keydown', handleEscape);
+    }, [showStockSummary]);
     
     // Calcular stock total desde Firebase y obtener datos de talles
     useEffect(() => {
@@ -340,13 +352,14 @@ const ItemDetail = ({ product }) => {
                                 })}
                             </div>
                             {/* Botón para mostrar/ocultar resumen de stock */}
-                            <div className="stock-toggle-container" style={{ marginTop: '1rem', textAlign: 'center' }}>
+                            <div className="stock-toggle-container">
                                 <button
                                     type="button"
                                     onClick={() => setShowStockSummary(true)}
                                     className="stock-toggle-button"
+                                    title="Ver disponibilidad completa por talle y local"
                                 >
-                                    Ver stock
+                                    Ver Stock
                                 </button>
                             </div>
                         </div>
