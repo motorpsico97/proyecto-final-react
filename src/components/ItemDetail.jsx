@@ -171,6 +171,13 @@ const ItemDetail = ({ product }) => {
     useEffect(() => {
         setCountKey(prev => prev + 1);
     }, [selectedTalle]);
+
+    // Limpiar error cuando se selecciona un talle
+    useEffect(() => {
+        if (selectedTalle && error === 'Por favor, selecciona un talle antes de agregar al carrito') {
+            setError('');
+        }
+    }, [selectedTalle, error]);
     
     // Calcular stock disponible considerando lo que ya está en el carrito
     const getAvailableStock = () => {
@@ -394,7 +401,7 @@ const ItemDetail = ({ product }) => {
                     )}
                     <div className="detail-stock">
                         <p>Stock total disponible: {totalStock} unidades</p>
-                        {error && <p style={{ color: 'red', marginTop: '0.5rem' }}>{error}</p>}
+                        {error && <p className='talle-error'>{error}</p>}
                     </div>
                     <div className="detail-actions">
                         <ItemCount

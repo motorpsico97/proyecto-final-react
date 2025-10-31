@@ -152,6 +152,12 @@
   color: #111827;
 }
 
+.talle-error{
+  color: rgb(255, 0, 0) !important;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
 .detail-stock {
   margin-top: 1rem;
   color: #4b5563;
@@ -173,8 +179,10 @@
 }
 
 .sizes-label {
+  border-top: 1px solid #dadcdf;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  padding-top: 1rem;
+  margin: 0.5rem 0;
 }
 
 .sizes-grid {
@@ -417,6 +425,7 @@
 }
 
 .stock-talle-card {
+  max-width: 250px;
   border: 2px solid #e5e7eb;
   border-radius: 16px;
   padding: 10px;
@@ -613,41 +622,5 @@
 
   100% {
     transform: translateX(100%) translateY(100%) rotate(45deg);
-  }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .stock-modal-content {
-    padding: 1.5rem;
-    margin: 0.5rem;
-    max-height: 90vh;
-    border-radius: 16px;
-  }
-
-  .modal-title {
-    font-size: 1.4rem;
-  }
-
-  .stock-grid {
-    gap: 1rem;
-  }
-
-  .stock-talle-card {
-    padding: 1rem;
-  }
-
-  .stock-total-general {
-    font-size: 1.1rem;
-    padding: 1.25rem;
-  }
-
-  .stock-toggle-button {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.8rem;
-  }
-
-  .stock-toggle-container {
-    margin-top: 1rem;
   }
 }
