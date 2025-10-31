@@ -1,0 +1,245 @@
+.centro-ayuda-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.centro-ayuda-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.centro-ayuda-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.centro-ayuda-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Barra de búsqueda */
+.search-box {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.search-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    border: none;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-button {
+    background-color: #007bff;
+    border: none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+/* Categorías FAQ */
+.faqs-container {
+    margin-bottom: 3rem;
+}
+
+.faq-category {
+    margin-bottom: 3rem;
+}
+
+.category-title {
+    font-size: 1.75rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Items FAQ */
+.faq-item {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 0 !important;
+}
+
+.faq-item.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #f8f9fa;
+}
+
+.faq-item.active .faq-question {
+    color: #007bff;
+}
+
+.chevron {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: #666;
+}
+
+.chevron.rotate {
+    transform: rotate(180deg);
+    color: #007bff;
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+.faq-answer p {
+    color: #555;
+    line-height: 1.7;
+    margin: 0;
+}
+
+
+/* CTA de contacto */
+.contact-cta {
+    background: var(--primary-color);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+}
+
+.contact-cta h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    background: var(--primary-color);
+    color: white !important;
+}
+
+.contact-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    background: var(--primary-color);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: var(--primary-color);
+}
+
+.cta-button {
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    
+}
+
+.cta-button.primary {
+    background-color: white;
+    color: #667eea;
+}
+
+.cta-button.primary:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .centro-ayuda-header h1 {
+        font-size: 2rem;
+    }
+
+    .search-box {
+        margin-bottom: 2rem;
+    }
+
+    .category-title {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .faq-answer {
+        padding: 0 1rem 1rem;
+    }
+
+    .contact-cta {
+        padding: 2rem 1rem;
+    }
+
+    .contact-cta h3 {
+        font-size: 1.5rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

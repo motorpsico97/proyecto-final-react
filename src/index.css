@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?info-cardfamily=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background: var(--background-color-light);
+  color: var(--font-color) !important;
+  font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+
+:root{
+
+  /* ===== COLORES ===== */
+  --primary-color: #ff712c;
+  --secondary-color: #ff5722;
+  --terciary-color: #21577a;
+  --link-color:#21577a;
+  --font-color: #000000;
+  --background-color-light: #ffffff;
+  --background-color-dark: #000000;
+
+  /* ===== TAMAÑOS DE FUENTE ===== */
+  /* Títulos principales */
+  --font-size-h1: 3rem;          /* 48px */
+  --font-size-h2: 2.5rem;        /* 40px */
+  --font-size-h3: 2rem;          /* 32px */
+  --font-size-h4: 1.75rem;       /* 28px */
+  --font-size-h5: 1.5rem;        /* 24px */
+  --font-size-h6: 1.25rem;       /* 20px */
+  
+  /* Texto del cuerpo */
+  --font-size-large: 1.125rem;   /* 18px */
+  --font-size-base: 1rem;        /* 16px - tamaño base */
+  --font-size-medium: 0.875rem;  /* 14px */
+  --font-size-small: 0.75rem;    /* 12px */
+  --font-size-xs: 0.625rem;      /* 10px */
+  
+  /* Tamaños especiales */
+  --font-size-hero: 4rem;        /* 64px - para títulos hero */
+  --font-size-display: 3.5rem;   /* 56px - para displays */
+  --font-size-lead: 1.25rem;     /* 20px - para texto destacado */
+  --font-size-caption: 0.875rem; /* 14px - para captions */
+  
+  /* Navegación */
+  --font-size-nav: 1rem;         /* 16px - enlaces de navegación */
+  
+  /* Botones */
+  --font-size-btn-large: 1.125rem;  /* 18px */
+  --font-size-btn-medium: 1rem;     /* 16px */
+  --font-size-btn-small: 0.875rem;  /* 14px */
+  
+  /* Formularios */
+  --font-size-input: 1rem;       /* 16px - evita zoom en iOS */
+  --font-size-label: 0.875rem;   /* 14px */
+  --font-size-helper: 0.75rem;   /* 12px - texto de ayuda */
+  
+  /* Cards y componentes */
+  --font-size-card-title: 1.25rem;   /* 20px */
+  --font-size-card-subtitle: 1rem;   /* 16px */
+  --font-size-card-text: 0.875rem;   /* 14px */
+  
+  /* Precios y números */
+  --font-size-price-large: 1.5rem;   /* 24px */
+  --font-size-price-medium: 1.25rem; /* 20px */
+  --font-size-price-small: 1rem;     /* 16px */
+}
+

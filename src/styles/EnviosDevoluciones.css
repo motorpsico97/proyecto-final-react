@@ -1,0 +1,334 @@
+.envios-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.content-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.info-section {
+    position: relative;
+}
+
+.section-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.section-icon.returns {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.section-icon.address {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.section-icon svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.info-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.info-card h3 {
+    font-size: 1.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.info-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-card ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.info-card ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.info-card p {
+    color: #555;
+    line-height: 1.7;
+}
+
+.note {
+    background: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #007bff;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Tabla de precios */
+.pricing-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.pricing-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.pricing-row.highlight {
+    background: #20c997;
+    color: white;
+    font-weight: 600;
+}
+
+.pricing-row .location {
+    font-weight: 500;
+}
+
+.location-2000 {
+    background-color: #20c997;
+    ;
+}
+
+.pricing-row .price {
+    font-weight: 600;
+    color: #007bff;
+}
+
+.pricing-row.highlight .price {
+    color: white;
+    background-color: #20c997;
+}
+
+/* Logos de transporte */
+.transport-logos {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.transport-item {
+    background: #f8f9fa;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* Pasos */
+.steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.step-content p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Alerta */
+.info-card.alert {
+    border: 2px solid #ffc107;
+    background: #fff3cd;
+}
+
+.info-card.alert h3, .info-card.alert ul li, .info-card.alert p {
+    color: #856404;
+    background: #fff3cd;
+}
+
+/* Dirección */
+.address-card {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.address-card p {
+    margin: 0.5rem 0;
+}
+
+.important-note {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #856404;
+}
+
+/* CTA de ayuda */
+.help-cta {
+    background: var(--primary-color) ;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    margin-top: 3rem;
+}
+
+.help-cta h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    background: var(--primary-color) 
+}
+
+.help-cta p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    background: var(--primary-color) 
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: white;
+    color: #667eea;
+}
+
+.btn-primary:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .info-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .info-card {
+        padding: 1.5rem;
+    }
+
+    .info-card h3 {
+        font-size: 1.25rem;
+    }
+
+    .step {
+        flex-direction: column;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .help-cta {
+        padding: 2rem 1rem;
+    }
+}

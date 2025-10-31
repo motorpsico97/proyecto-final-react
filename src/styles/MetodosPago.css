@@ -1,0 +1,442 @@
+.metodos-pago-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Banner de seguridad */
+.security-banner {
+    background: #0d9b70;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.transaction {
+    background: #0d9b70;
+}
+
+.security-icon {
+    width: 60px;
+    height: 60px;
+    background: #0d9b70;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.security-icon svg {
+    width: 32px;
+    height: 32px;
+    background: #0d9b70;
+}
+
+.security-banner h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.5rem;
+    background: #0d9b70;
+}
+
+.security-banner p {
+    margin: 0;
+    opacity: 0.95;
+    background: #0d9b70;
+}
+
+/* Métodos de pago */
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.payment-method-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.payment-method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.method-header {
+    padding: 1.5rem;
+    background: #dbdbdb;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.method-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.method-icon.cards {
+    background: #0056b3;
+}
+
+.method-icon.cards .credit {
+    background: #0056b3;
+}
+
+.method-icon.paypal {
+    background: #003087;
+}
+
+.method-icon.paypal .paypal-logo {
+    background: #003087;
+}
+
+.method-icon.transfer {
+    background: #6f42c1;
+}
+
+.method-icon.transfer .transfer-icon {
+    background: #6f42c1;
+}
+
+.method-icon.mercadopago {
+    background: #0089c4;
+}
+
+.method-icon.mercadopago .mercadopago-logo {
+    background: #0089c4;
+}
+
+.method-icon svg {
+    width: 26px;
+    height: 26px;
+    color: white;
+}
+
+.method-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.4rem;
+    background: #dbdbdb;
+}
+
+.method-content {
+    padding: 1.5rem;
+}
+
+.method-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Marcas de tarjetas */
+.card-brands {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.brand-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.brand-logo {
+    font-size: 1.5rem;
+}
+
+/* PayPal */
+.paypal-logo-display {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.paypal-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0070ba;
+}
+
+/* Información bancaria */
+.bank-info {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.bank-info h4 {
+    margin: 0 0 1rem 0;
+    color: #333;
+}
+
+.bank-details p {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+/* Beneficios */
+.method-benefits h4 {
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.method-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.method-benefits ul li {
+    padding: 0.5rem 0;
+    color: #555;
+}
+
+/* Sección de cuotas */
+.installments-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.installments-section h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.installments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.installment-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.installment-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+.installment-card.featured {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.installment-icon {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.installment-card h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.3rem;
+}
+
+.installment-card p {
+    margin: 0 0 1rem 0;
+    opacity: 0.9;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge.special {
+    background: rgba(255, 215, 0, 0.3);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+}
+
+.installments-note {
+    text-align: center;
+    opacity: 0.9;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* FAQ de pagos */
+.faq-payment {
+    margin-bottom: 3rem;
+}
+
+.faq-payment h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.faq-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-item h4 {
+    color: #007bff;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+}
+
+.faq-item p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Sección de ayuda */
+.help-section {
+    background: #ee5a6f;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+}
+
+.help-section h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    background: #ee5a6f;
+}
+
+.help-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+    background: #ee5a6f;
+}
+
+.help-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #ee5a6f;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: white;
+    color: #ff6b6b;
+}
+
+.btn-primary:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .security-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .payment-methods {
+        grid-template-columns: 1fr;
+    }
+
+    .installments-grid,
+    .faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .installments-section,
+    .help-section {
+        padding: 2rem 1rem;
+    }
+
+    .help-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

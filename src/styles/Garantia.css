@@ -1,0 +1,410 @@
+.garantia-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Hero de garantía */
+.guarantee-hero {
+    background: var(--primary-color);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.hero-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.hero-icon svg {
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+}
+
+.guarantee-hero h2 {
+    font-size: 2rem;
+    color: white !important;
+    margin-bottom: 0.5rem;
+    background: var(--primary-color);
+}
+
+.guarantee-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    background: var(--primary-color);
+}
+
+/* Grid de contenido */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.guarantee-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--terciary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.card-icon .period {
+    background: var(--terciary-color);
+}
+
+.card-icon .policy {
+    background: #1e7e34;
+}
+.card-icon .notCovered {
+    background: #dc3545;
+}
+
+.card-icon.covered {
+    background: #1e7e34;
+}
+
+.card-icon.not-covered {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.card-icon.process, .card-icon .claim {
+    background: #ff9800;
+}
+
+.card-icon svg {
+    width: 26px;
+    height: 26px;
+    color: white;
+}
+
+.guarantee-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Períodos de garantía */
+.guarantee-periods {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.period-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.period-duration {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #007bff;
+}
+
+.period-desc {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Listas */
+.coverage-list,
+.not-covered-list {
+    list-style: none;
+    padding: 0;
+}
+
+.coverage-list li,
+.not-covered-list li {
+    padding: 0.75rem 0;
+    padding-left: 2rem;
+    position: relative;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.coverage-list li:last-child,
+.not-covered-list li:last-child {
+    border-bottom: none;
+}
+
+.coverage-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.not-covered-list li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Tarjeta de alerta */
+.alert-card {
+    border: 2px solid #dc3545;
+}
+
+/* Pasos del proceso */
+.process-card {
+    grid-column: 1 / -1;
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.process-step {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.step-num {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.step-info h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.step-info p {
+    margin: 0.5rem 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.step-info ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.step-info ul li {
+    color: #555;
+    margin: 0.25rem 0;
+}
+
+.resolution-time {
+    background: #e7f3ff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #007bff;
+    margin-top: 0.75rem !important;
+}
+
+/* Sección de consejos */
+.tips-section {
+    background: #f8f9fa;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    margin-bottom: 3rem;
+}
+
+.tips-section h2 {
+    text-align: center;
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.tip-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tip-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.tip-card h4 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.tip-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* CTA de contacto */
+.contact-guarantee {
+    background: #0d9b70 ;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+}
+
+.contact-guarantee h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    background: #0d9b70 ;
+}
+
+.contact-guarantee p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+    background: #0d9b70 ;
+}
+
+
+.contact-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #0d9b70 ;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: white;
+    color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .guarantee-hero {
+        padding: 2rem 1rem;
+    }
+
+    .guarantee-hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .process-step {
+        flex-direction: column;
+    }
+
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tips-section,
+    .contact-guarantee {
+        padding: 2rem 1rem;
+    }
+}

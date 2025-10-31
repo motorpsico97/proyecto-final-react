@@ -1,0 +1,305 @@
+.item-detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.item-detail {
+  max-width: 64rem;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.item-detail-content {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .item-detail-content {
+    flex-direction: row;
+  }
+}
+
+.detail-image-container {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.detail-main-image {
+  height: 24rem;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.detail-gallery {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem;
+}
+
+.gallery-thumbnail {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
+}
+
+.gallery-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.gallery-thumbnail.active {
+  border-color: #2563eb;
+}
+
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.fullscreen-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.close-fullscreen {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 3rem;
+  padding: 1rem 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.carousel-button.prev {
+  left: -4rem;
+}
+
+.carousel-button.next {
+  right: -4rem;
+}
+
+
+.detail-info {
+  padding: 2rem;
+}
+
+.detail-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.detail-description {
+  margin-top: 0.5rem;
+  color: #4b5563;
+}
+
+.detail-price {
+  margin-top: 1rem;
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+.detail-stock {
+  margin-top: 1rem;
+  color: #4b5563;
+}
+
+.detail-actions {
+  margin-top: 1.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Sizes (Talles) */
+.sizes-container {
+  margin-top: 1rem;
+}
+
+.sizes-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.sizes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.size-option {
+  min-width: 2.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.375rem;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+}
+
+.size-option:hover {
+  border-color: #111827;
+}
+
+.size-option.selected {
+  border-color: #111827;
+  background: #111827;
+  color: #fff;
+}
+
+.size-option.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.size-stock-info {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 0.375rem;
+  border-left: 3px solid #2563eb;
+}
+
+.size-stock-info p {
+  margin: 0;
+  color: #111827;
+  font-size: 0.95rem;
+}
+
+.size-stock-info strong {
+  color: #1e40af;
+}
+
+.finish-button {
+  padding: 0.5rem 1.5rem;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.continue-button {
+  padding: 0.5rem 1.5rem;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+/* Estilos para el visor de pantalla completa */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.fullscreen-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  cursor: default;
+}
+
+.close-fullscreen {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.close-fullscreen:hover {
+  transform: scale(1.2);
+}
+
+/* Mejorar la indicación de que la imagen principal es clickeable */
+.detail-main-image {
+  cursor: zoom-in;
+  transition: transform 0.2s;
+}
+
+.detail-main-image:hover {
+  transform: scale(1.02);
+}

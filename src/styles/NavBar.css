@@ -1,0 +1,84 @@
+.navbar {
+  padding: .5rem;
+  position: sticky;
+  align-content: center;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  height: 70px;
+}
+
+.logo img {
+  height: 30px;
+}
+
+.navbar-container {
+  max-width: 100vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: end;
+  gap: 1rem;
+}
+
+.navbar-link:hover {
+  color: #ccc;
+}
+
+.navbar-dropdown {
+  position: relative;
+}
+
+.dropdown-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+}
+
+/* menú desplegable */
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 10rem;
+  z-index: 200;
+  padding: 0.5rem 0;
+  
+}
+
+
+/* Mostrar el menú desplegable al pasar el ratón  */
+/* NO BORRAR */
+.navbar-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  box-shadow: #111 0px 0px 10px -5px;
+}
+

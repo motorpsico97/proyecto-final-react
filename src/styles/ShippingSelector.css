@@ -1,0 +1,157 @@
+/* ===== SHIPPING SELECTOR ===== */
+.shipping-selector {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.shipping-selector h4 {
+  font-size: var(--font-size-h5);
+  color: var(--terciary-color);
+  margin-bottom: 1rem;
+}
+
+/* ===== FREE SHIPPING BANNER ===== */
+.free-shipping-banner {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* ===== SHIPPING TYPE SELECTOR ===== */
+.shipping-type-selector {
+  margin-bottom: 1.5rem;
+}
+
+.shipping-type-option {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.shipping-type-option:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(255, 113, 44, 0.15);
+}
+
+.shipping-type-option.selected {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(255, 113, 44, 0.05), rgba(255, 87, 34, 0.05));
+  box-shadow: 0 4px 16px rgba(255, 113, 44, 0.2);
+}
+
+.shipping-type-option input[type="radio"] {
+  display: none;
+}
+
+.shipping-type-option .option-content h5 {
+  color: var(--terciary-color);
+  font-size: var(--font-size-h6);
+  margin-bottom: 0.5rem;
+}
+
+.shipping-cost {
+  color: #666;
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+}
+
+/* ===== FORM GROUPS ===== */
+.shipping-details {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--terciary-color);
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size-medium);
+}
+
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: var(--font-size-base);
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 113, 44, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-group textarea::placeholder {
+  color: #999;
+}
+
+/* ===== SHIPPING SUMMARY ===== */
+.shipping-summary {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #cad5db !important;
+  border-radius: 8px;
+  border-left: 4px solid var(--terciary-color);
+}
+
+.shipping-summary h5 {
+  color: var(--terciary-color);
+  font-size: var(--font-size-medium);
+  margin-bottom: 0.75rem;
+  background-color: #cad5db;
+}
+
+.shipping-summary p {
+  margin: 0.5rem 0;
+  font-size: var(--font-size-medium);
+  background-color: #cad5db;
+}
+
+.shipping-summary p strong {
+  color: var(--terciary-color);
+  background-color: #cad5db;
+}
+
+.shipping-summary .cost {
+  font-weight: 700;
+  font-size: var(--font-size-large);
+  background-color: #cad5db;
+}
+
+.shipping-summary .cost.free {
+  color: #28a745;
+}
+
+.delivery-time {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: var(--font-size-small);
+  margin-top: 0.5rem;
+
+}

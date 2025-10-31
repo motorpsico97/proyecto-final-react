@@ -1,0 +1,234 @@
+.footer {
+    color: white ;
+    padding: 3rem 0 0;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.295);
+    background-color: var(--link-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem 2rem;
+    background-color: var(--link-color);
+}
+
+.footer-section{
+    background-color: var(--link-color);
+}
+
+.footer-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.5rem;
+    background-color: var(--link-color);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--link-color);
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+    background-color: var(--link-color);
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 0.95rem;
+    background-color: var(--link-color);
+}
+
+.footer-links a:hover {
+    color: #fff !important;
+    transform: translateX(5px);
+}
+
+/* Redes sociales */
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--link-color);
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background-color: var(--link-color);
+}
+
+.social-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.footer-contact {
+    margin-top: 1rem;
+    background-color: var(--link-color);
+}
+
+.footer-contact p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    background-color: var(--link-color);
+}
+
+.footer-contact strong {
+    color: #fff;
+    background-color: var(--link-color);
+}
+
+/* Métodos de pago */
+.footer-payment {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--link-color);
+}
+
+.footer-payment h4 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    background-color: var(--link-color);
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    background-color: var(--link-color);
+}
+
+.payment-icon {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.payment-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Copyright y legal */
+.footer-bottom {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: var(--link-color);
+}
+
+.footer-bottom p {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    background-color: var(--link-color);
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background-color: var(--link-color);
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.3s ease;
+    background-color: var(--link-color);
+}
+
+.footer-legal a:hover {
+    color: #fff !important;
+}
+
+.footer-legal span {
+    color: rgba(255, 255, 255, 0.5);
+    background-color: var(--link-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer {
+        margin-top: 2rem;
+        padding-top: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        padding: 0 1rem 1.5rem;
+        gap: 2rem;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-links a:hover {
+        transform: none;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .payment-icons {
+        gap: 1rem;
+    }
+
+    .footer-legal {
+        gap: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-payment h4 {
+        font-size: 0.9rem;
+    }
+
+    .payment-icons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .payment-icon {
+        width: 100%;
+        max-width: 200px;
+    }
+}
