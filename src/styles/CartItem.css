@@ -37,6 +37,7 @@
 .cart-item-size {
   font-size: var(--font-size-small);
   color: #111827 !important;
+  margin-top: 1rem;
 }
 .unit-price {
   font-size: var(--font-size-small);
@@ -44,6 +45,7 @@
 }
 .cart-item-price {
   font-weight: bold;
+  margin-top: 1rem;
 }
 
 .remove-button {
@@ -51,6 +53,8 @@
   border: none;
   background: none;
   cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .remove-button:hover {

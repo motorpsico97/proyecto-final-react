@@ -30,7 +30,7 @@ const CartItem = ({ item }) => {
                 <div className="cart-item-details">
                     <h3>{item.title}</h3>
                     {item.talle && <p className="cart-item-size">Talle: {item.talle}</p>}
-                    <p>Precio unitario: ${item.price}</p>
+                    <p className='unit-price'>Precio unitario: ${item.price}</p>
                     <p className="cart-item-price">Subtotal: ${item.price * item.stock}</p>
                     <div className="quantity-controls">
                         <button onClick={decrement} className="qty-button">-</button>
