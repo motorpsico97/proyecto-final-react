@@ -112,6 +112,30 @@ const ProductFilters = ({ onFiltersChange, activeFilters }) => {
         });
     };
 
+    // Remover filtro específico
+    const removeFilter = (filterType, value) => {
+        let newFilters = { ...activeFilters };
+        
+        switch (filterType) {
+            case 'categories':
+                newFilters.categories = activeFilters.categories.filter(c => c !== value);
+                break;
+            case 'marcas':
+                newFilters.marcas = activeFilters.marcas.filter(m => m !== value);
+                break;
+            case 'generos':
+                newFilters.generos = activeFilters.generos.filter(g => g !== value);
+                break;
+            case 'price':
+                newFilters.price = { min: priceRange.min, max: priceRange.max };
+                break;
+            default:
+                break;
+        }
+        
+        onFiltersChange(newFilters);
+    };
+
     if (loading) {
         return (
             <aside className="product-filters">
@@ -192,39 +216,118 @@ const ProductFilters = ({ onFiltersChange, activeFilters }) => {
             <div className="filter-section">
                 <h4 className="filter-title">Precio</h4>
                 <div className="price-filter">
-                    <div className="price-input-group">
-                        <label className="price-label">Mínimo</label>
-                        <input
-                            type="number"
-                            className="price-input"
-                            min={priceRange.min}
-                            max={priceRange.max}
-                            value={activeFilters.price.min}
-                            onChange={(e) => handlePriceChange('min', e.target.value)}
-                        />
-                    </div>
-                    <div className="price-input-group">
-                        <label className="price-label">Máximo</label>
-                        <input
-                            type="number"
-                            className="price-input"
-                            min={priceRange.min}
-                            max={priceRange.max}
-                            value={activeFilters.price.max}
-                            onChange={(e) => handlePriceChange('max', e.target.value)}
-                        />
-                    </div>
                     <div className="price-range-display">
                         ${activeFilters.price.min} - ${activeFilters.price.max}
+                    </div>
+                    <div className="price-slider-container">
+                        <div className="slider-group">
+                            <label className="slider-label">Mínimo</label>
+                            <input
+                                type="range"
+                                className="price-slider price-slider-min"
+                                min={priceRange.min}
+                                max={priceRange.max}
+                                value={activeFilters.price.min}
+                                onChange={(e) => handlePriceChange('min', e.target.value)}
+                            />
+                        </div>
+                        <div className="slider-group">
+                            <label className="slider-label">Máximo</label>
+                            <input
+                                type="range"
+                                className="price-slider price-slider-max"
+                                min={priceRange.min}
+                                max={priceRange.max}
+                                value={activeFilters.price.max}
+                                onChange={(e) => handlePriceChange('max', e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
 
-            {/* Contador de filtros activos */}
-            <div className="active-filters-count">
-                <span>
-                    {activeFilters.categories.length + activeFilters.marcas.length + activeFilters.generos.length} filtros activos
-                </span>
+            {/* Filtros activos */}
+            <div className="active-filters-section">
+                <h4 className="active-filters-title">Filtros Activos</h4>
+                <div className="active-filters-list">
+                    {/* Filtros de categorías */}
+                    {activeFilters.categories.map(category => (
+                        <div key={`category-${category}`} className="active-filter-chip">
+                            <span className="filter-value">{category}</span>
+                            <button 
+                                onClick={() => removeFilter('categories', category)}
+                                className="remove-filter-btn"
+                                aria-label={`Eliminar filtro ${category}`}
+                            >
+                                ×
+                            </button>
+                        </div>
+                    ))}
+                    
+                    {/* Filtros de marcas */}
+                    {activeFilters.marcas.map(marca => (
+                        <div key={`marca-${marca}`} className="active-filter-chip">
+                            <span className="filter-value">{marca}</span>
+                            <button 
+                                onClick={() => removeFilter('marcas', marca)}
+                                className="remove-filter-btn"
+                                aria-label={`Eliminar filtro ${marca}`}
+                            >
+                                ×
+                            </button>
+                        </div>
+                    ))}
+                    
+                    {/* Filtros de géneros */}
+                    {activeFilters.generos.map(genero => (
+                        <div key={`genero-${genero}`} className="active-filter-chip">
+                            <span className="filter-value">{genero}</span>
+                            <button 
+                                onClick={() => removeFilter('generos', genero)}
+                                className="remove-filter-btn"
+                                aria-label={`Eliminar filtro ${genero}`}
+                            >
+                                ×
+                            </button>
+                        </div>
+                    ))}
+                    
+                    {/* Filtro de precio (solo si no es el rango por defecto) */}
+                    {(activeFilters.price.min > priceRange.min || activeFilters.price.max < priceRange.max) && (
+                        <div className="active-filter-chip">
+                            <span className="filter-value">
+                                ${activeFilters.price.min} - ${activeFilters.price.max}
+                            </span>
+                            <button 
+                                onClick={() => removeFilter('price', null)}
+                                className="remove-filter-btn"
+                                aria-label="Eliminar filtro de precio"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    )}
+                    
+                    {/* Mensaje cuando no hay filtros */}
+                    {activeFilters.categories.length === 0 && 
+                     activeFilters.marcas.length === 0 && 
+                     activeFilters.generos.length === 0 && 
+                     activeFilters.price.min === priceRange.min && 
+                     activeFilters.price.max === priceRange.max && (
+                        <p className="no-active-filters">No hay filtros aplicados</p>
+                    )}
+                </div>
+                
+                {/* Contador total */}
+                {(activeFilters.categories.length + activeFilters.marcas.length + activeFilters.generos.length > 0 ||
+                  activeFilters.price.min > priceRange.min || activeFilters.price.max < priceRange.max) && (
+                    <div className="active-filters-count">
+                        <span>
+                            {activeFilters.categories.length + activeFilters.marcas.length + activeFilters.generos.length + 
+                             (activeFilters.price.min > priceRange.min || activeFilters.price.max < priceRange.max ? 1 : 0)} filtros activos
+                        </span>
+                    </div>
+                )}
             </div>
         </aside>
     );

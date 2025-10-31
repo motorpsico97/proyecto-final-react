@@ -11,6 +11,7 @@ const ProductsWithFilters = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
     const [filters, setFilters] = useState({
         categories: [],
         marcas: [],
@@ -25,11 +26,27 @@ const ProductsWithFilters = () => {
             try {
                 const itemsRef = collection(db, 'items');
                 const snapshot = await getDocs(itemsRef);
-                const allProducts = snapshot.docs.map(doc => ({ 
-                    id: doc.id, 
-                    ...doc.data() 
+                const allProducts = snapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
                 }));
-                
+
+                // Calcular rango de precios dinámico
+                const prices = allProducts.map(item => Number(item.price) || 0).filter(price => price > 0);
+                if (prices.length > 0) {
+                    const dynamicRange = {
+                        min: Math.min(...prices),
+                        max: Math.max(...prices)
+                    };
+                    setPriceRange(dynamicRange);
+                    
+                    // Actualizar filtros con el rango dinámico
+                    setFilters(prevFilters => ({
+                        ...prevFilters,
+                        price: dynamicRange
+                    }));
+                }
+
                 setProducts(allProducts);
                 setFilteredProducts(allProducts);
             } catch (error) {
@@ -48,10 +65,10 @@ const ProductsWithFilters = () => {
             categories: categoryId ? [decodeURIComponent(categoryId)] : [],
             marcas: marca ? [decodeURIComponent(marca)] : [],
             generos: genero ? [decodeURIComponent(genero)] : [],
-            price: { min: 0, max: 10000 }
+            price: priceRange
         };
         setFilters(newFilters);
-    }, [categoryId, marca, genero]);
+    }, [categoryId, marca, genero, priceRange]);
 
     // Aplicar filtros cuando cambien
     useEffect(() => {
@@ -60,21 +77,21 @@ const ProductsWithFilters = () => {
 
             // Filtrar por categorías
             if (filters.categories.length > 0) {
-                filtered = filtered.filter(product => 
+                filtered = filtered.filter(product =>
                     filters.categories.includes(product.categoryId)
                 );
             }
 
             // Filtrar por marcas
             if (filters.marcas.length > 0) {
-                filtered = filtered.filter(product => 
+                filtered = filtered.filter(product =>
                     filters.marcas.includes(product.marca)
                 );
             }
 
             // Filtrar por géneros
             if (filters.generos.length > 0) {
-                filtered = filtered.filter(product => 
+                filtered = filtered.filter(product =>
                     filters.generos.includes(product.genero)
                 );
             }
@@ -92,14 +109,7 @@ const ProductsWithFilters = () => {
     }, [filters, products]);
 
     const handleFiltersChange = (newFilters) => {
-        // Mantener los filtros de URL si existen
-        const updatedFilters = {
-            ...newFilters,
-            categories: categoryId ? [decodeURIComponent(categoryId)] : newFilters.categories,
-            marcas: marca ? [decodeURIComponent(marca)] : newFilters.marcas,
-            generos: genero ? [decodeURIComponent(genero)] : newFilters.generos,
-        };
-        setFilters(updatedFilters);
+        setFilters(newFilters);
     };
 
     if (loading) {
@@ -113,17 +123,17 @@ const ProductsWithFilters = () => {
     return (
         <div className="products-container">
             <div className="products-layout">
-                <ProductFilters 
+                <ProductFilters
                     onFiltersChange={handleFiltersChange}
                     activeFilters={filters}
                 />
                 <div className="products-main">
                     <div className="products-header">
                         <h2>
-                            {categoryId ? decodeURIComponent(categoryId) : 
-                             marca ? decodeURIComponent(marca) : 
-                             genero ? decodeURIComponent(genero) : 
-                             'Productos'} ({filteredProducts.length})
+                            {categoryId ? decodeURIComponent(categoryId) :
+                                marca ? decodeURIComponent(marca) :
+                                    genero ? decodeURIComponent(genero) :
+                                        'Nuestros Productos'} 
                         </h2>
                         {filteredProducts.length !== products.length && (
                             <p className="filter-results">
