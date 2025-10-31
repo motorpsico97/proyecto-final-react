@@ -1,0 +1,140 @@
+/* ===== SEARCH BAR ===== */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.search-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input-container:focus-within {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(183, 234, 102, 0.2);
+    transform: translateY(-1px);
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    color: #374151;
+    background: transparent;
+    width: 250px;
+    transition: width 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.search-input:focus {
+    width: 300px;
+}
+
+.clear-search-btn {
+    position: absolute;
+    right: 45px;
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.25rem;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.clear-search-btn:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.search-submit-btn {
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border-radius: 0;
+}
+
+.search-submit-btn:hover {
+    transform: scale(1.05);
+}
+
+.search-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .search-input {
+        width: 200px;
+    }
+
+    .search-input:focus {
+        width: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .search-bar {
+        margin: 0 0.5rem;
+    }
+
+    .search-input {
+        width: 150px;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .search-input:focus {
+        width: 180px;
+    }
+
+    .search-submit-btn {
+        padding: 0.6rem;
+    }
+
+    .search-icon {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-input {
+        width: 120px;
+        padding: 0.5rem 0.7rem;
+    }
+
+    .search-input:focus {
+        width: 140px;
+    }
+
+    .search-input::placeholder {
+        font-size: 0.8rem;
+    }
+}

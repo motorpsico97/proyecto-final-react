@@ -144,7 +144,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="footer-bottom">
-                <p>&copy; {currentYear} Tienda Deportiva. Todos los derechos reservados.</p>
+                <p>&copy; {currentYear} Shoes Store. Todos los derechos reservados.</p>
                 <div className="footer-legal">
                     <a href="#privacidad">Política de Privacidad</a>
                     <span>|</span>

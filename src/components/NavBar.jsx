@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import CartWidget from './CartWidget';
+import SearchBar from './SearchBar';
 import '../styles/NavBar.css';
 import logo from '../assets/logo.png';
 
@@ -104,6 +105,7 @@ const NavBar = () => {
                     </div>
                     <Link to="/contacto" className="navbar-link">Contacto</Link>
                 </div>
+                <SearchBar />
                 <CartWidget />
             </div>
         </nav>

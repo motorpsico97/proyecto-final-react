@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import ProductFilters from './ProductFilters';
@@ -8,6 +8,8 @@ import '../styles/ProductsWithFilters.css';
 
 const ProductsWithFilters = () => {
     const { categoryId, marca, genero } = useParams();
+    const [searchParams] = useSearchParams();
+    const searchTerm = searchParams.get('search') || '';
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -75,6 +77,38 @@ const ProductsWithFilters = () => {
         const applyFilters = () => {
             let filtered = [...products];
 
+            // Filtrar por búsqueda de texto
+            if (searchTerm) {
+                const searchTermNormalized = searchTerm
+                    .toLowerCase()
+                    .trim()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, ''); // Eliminar acentos
+                
+                filtered = filtered.filter(product => {
+                    const searchFields = [
+                        product.name,
+                        product.description,
+                        product.categoryId,
+                        product.marca,
+                        product.genero,
+                        product.color,
+                        product.material,
+                        product.tags
+                    ].filter(Boolean); // Filtrar campos que existan
+                    
+                    return searchFields.some(field => {
+                        const fieldNormalized = String(field)
+                            .toLowerCase()
+                            .trim()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, ''); // Eliminar acentos
+                        
+                        return fieldNormalized.includes(searchTermNormalized);
+                    });
+                });
+            }
+
             // Filtrar por categorías
             if (filters.categories.length > 0) {
                 filtered = filtered.filter(product =>
@@ -106,7 +140,7 @@ const ProductsWithFilters = () => {
         };
 
         applyFilters();
-    }, [filters, products]);
+    }, [filters, products, searchTerm]);
 
     const handleFiltersChange = (newFilters) => {
         setFilters(newFilters);
@@ -130,10 +164,11 @@ const ProductsWithFilters = () => {
                 <div className="products-main">
                     <div className="products-header">
                         <h2>
-                            {categoryId ? decodeURIComponent(categoryId) :
-                                marca ? decodeURIComponent(marca) :
-                                    genero ? decodeURIComponent(genero) :
-                                        'Nuestros Productos'} 
+                            {searchTerm ? `Resultados para: "${searchTerm}"` :
+                                categoryId ? decodeURIComponent(categoryId) :
+                                    marca ? decodeURIComponent(marca) :
+                                        genero ? decodeURIComponent(genero) :
+                                            'Nuestros Productos'} 
                         </h2>
                         {filteredProducts.length !== products.length && (
                             <p className="filter-results">
