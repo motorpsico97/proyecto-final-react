@@ -187,20 +187,3 @@
     line-height: 1.6;
     margin: 0;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .contact-header h1 {
-        font-size: 2rem;
-    }
-
-    .contact-form,
-    .contact-info {
-        padding: 1.5rem;
-    }
-}

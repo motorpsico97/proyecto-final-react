@@ -1,4 +1,3 @@
-/* ===== SEARCH BAR ===== */
 .search-bar {
     display: flex;
     align-items: center;
@@ -86,55 +85,4 @@
 .search-icon {
     width: 18px;
     height: 18px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1024px) {
-    .search-input {
-        width: 200px;
-    }
-
-    .search-input:focus {
-        width: 250px;
-    }
-}
-
-@media (max-width: 768px) {
-    .search-bar {
-        margin: 0 0.5rem;
-    }
-
-    .search-input {
-        width: 150px;
-        font-size: 0.8rem;
-        padding: 0.6rem 0.8rem;
-    }
-
-    .search-input:focus {
-        width: 180px;
-    }
-
-    .search-submit-btn {
-        padding: 0.6rem;
-    }
-
-    .search-icon {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .search-input {
-        width: 120px;
-        padding: 0.5rem 0.7rem;
-    }
-
-    .search-input:focus {
-        width: 140px;
-    }
-
-    .search-input::placeholder {
-        font-size: 0.8rem;
-    }
 }

@@ -1,4 +1,3 @@
-/* ===== ITEM LIST CONTAINER ===== */
 .item-list-container {
   max-width: 90vw;
   width: 100%;
@@ -6,7 +5,6 @@
   padding: 2rem;
 }
 
-/* Layout con filtros */
 .container-with-filters {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -15,7 +13,7 @@
 }
 
 .products-section {
-  min-width: 0; /* Permite que el contenido se contraiga */
+  min-width: 0; 
 }
 
 .item-list-title {

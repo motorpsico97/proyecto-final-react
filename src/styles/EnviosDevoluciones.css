@@ -112,7 +112,6 @@
     color: #666;
 }
 
-/* Tabla de precios */
 .pricing-table {
     display: flex;
     flex-direction: column;
@@ -153,7 +152,6 @@
     background-color: #20c997;
 }
 
-/* Logos de transporte */
 .transport-logos {
     display: flex;
     gap: 1rem;
@@ -168,7 +166,6 @@
     font-weight: 500;
 }
 
-/* Pasos */
 .steps {
     display: flex;
     flex-direction: column;
@@ -207,7 +204,6 @@
     line-height: 1.6;
 }
 
-/* Alerta */
 .info-card.alert {
     border: 2px solid #ffc107;
     background: #fff3cd;
@@ -218,7 +214,6 @@
     background: #fff3cd;
 }
 
-/* Dirección */
 .address-card {
     text-align: center;
     font-size: 1.1rem;
@@ -238,7 +233,6 @@
     color: #856404;
 }
 
-/* CTA de ayuda */
 .help-cta {
     background: var(--primary-color) ;
     padding: 3rem 2rem;
@@ -299,36 +293,4 @@
 .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2rem;
-    }
-
-    .info-section h2 {
-        font-size: 1.5rem;
-    }
-
-    .info-card {
-        padding: 1.5rem;
-    }
-
-    .info-card h3 {
-        font-size: 1.25rem;
-    }
-
-    .step {
-        flex-direction: column;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .help-cta {
-        padding: 2rem 1rem;
-    }
 }

@@ -15,14 +15,10 @@
 
 .item-detail-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-@media (min-width: 768px) {
-  .item-detail-content {
-    flex-direction: row;
-  }
-}
+
 
 .detail-image-container {
   flex-shrink: 0;
@@ -173,7 +169,6 @@
   margin-top: 1rem;
 }
 
-/* Sizes (Talles) */
 .sizes-container {
   margin-top: 1rem;
 }
@@ -252,7 +247,6 @@
   cursor: pointer;
 }
 
-/* Estilos para el visor de pantalla completa */
 .fullscreen-overlay {
   position: fixed;
   top: 0;
@@ -302,7 +296,6 @@
   transform: scale(1.2);
 }
 
-/* Mejorar la indicación de que la imagen principal es clickeable */
 .detail-main-image {
   cursor: zoom-in;
   transition: transform 0.2s;
@@ -312,7 +305,6 @@
   transform: scale(1.02);
 }
 
-/* Stock Toggle Button */
 .stock-toggle-container {
   margin-top: 1.5rem;
   text-align: center;
@@ -347,7 +339,6 @@
   transform: scale(0.98);
 }
 
-/* Modal de Stock */
 .stock-modal-overlay {
   position: fixed;
   top: 0;
@@ -592,7 +583,6 @@
   border: 2px dashed #d1d5db;
 }
 
-/* Animaciones */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -624,3 +614,4 @@
     transform: translateX(100%) translateY(100%) rotate(45deg);
   }
 }
+
