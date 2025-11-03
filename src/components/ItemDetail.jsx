@@ -6,30 +6,43 @@ import { useCart } from '../context/CartContext';
 import ItemCount from './ItemCount';
 import '../styles/ItemDetail.css';
 
+/** Página de detalle de producto. Maneja la visualización completa del producto, galería de imágenes, selección de talles,
+ * gestión de stock en tiempo real y agregado al carrito con validaciones
+ */
 const ItemDetail = ({ product }) => {
-    const [stockAdded, setStockAdded] = useState(0);
-    const [error, setError] = useState('');
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isFullScreen, setIsFullScreen] = useState(false);
-    const [selectedTalle, setSelectedTalle] = useState(null);
-    const [stockBySize, setStockBySize] = useState(null);
-    const [totalStock, setTotalStock] = useState(0);
-    const [stockByTalle, setStockByTalle] = useState({}); // Nuevo estado para stock por cada talle
+    // Estados para la gestión del carrito y validaciones
+    const [stockAdded, setStockAdded] = useState(0); // Cantidad total agregada al carrito
+    const [error, setError] = useState(''); // Mensajes de error para el usuario
+
+    // Estados para la galería de imágenes
+    const [currentImageIndex, setCurrentImageIndex] = useState(0); // Índice de imagen actual
+    const [isFullScreen, setIsFullScreen] = useState(false); // Estado del modal fullscreen
+
+    // Estados para la gestión de talles y stock
+    const [selectedTalle, setSelectedTalle] = useState(null); // Talle seleccionado por el usuario
+    const [stockBySize, setStockBySize] = useState(null); // Stock disponible para el talle seleccionado
+    const [totalStock, setTotalStock] = useState(0); // Stock total del producto (todos los talles)
+    const [stockByTalle, setStockByTalle] = useState({}); // Stock por cada talle disponible
     const [stockByLocationForTalle, setStockByLocationForTalle] = useState({}); // Stock por local para talle seleccionado
     const [detailedStockByTalle, setDetailedStockByTalle] = useState({}); // Stock detallado por talle y local
-    const [showStockSummary, setShowStockSummary] = useState(false); // Estado para mostrar/ocultar resumen de stock
+    const [showStockSummary, setShowStockSummary] = useState(false); // Estado para mostrar/ocultar modal de stock
     const [countKey, setCountKey] = useState(0);
+
+    // Contextos y navegación
     const { addItemWithStock, cart } = useCart();
     const navigate = useNavigate();
 
+    // Crear galería de imágenes combinando imagen principal y galería adicional
     const gallery = [product.image, ...(product.galeria || [])].filter(Boolean);
-    
-    // Extraer talles del nuevo formato (map de maps)
-    const sizes = product?.talles && typeof product.talles === 'object' 
+
+    // Extraer talles disponibles del producto (excluyendo campos de metadatos)
+    const sizes = product?.talles && typeof product.talles === 'object'
         ? Object.keys(product.talles).filter(key => key !== 'valor' && key !== 'stock')
         : [];
 
-    // Manejar tecla Escape para cerrar el modal
+    /**
+     * Effect para manejar la tecla Escape y cerrar el modal de stock. Se ejecuta cuando cambia el estado showStockSummary
+     */
     useEffect(() => {
         const handleEscape = (event) => {
             if (event.key === 'Escape' && showStockSummary) {
@@ -40,20 +53,21 @@ const ItemDetail = ({ product }) => {
         document.addEventListener('keydown', handleEscape);
         return () => document.removeEventListener('keydown', handleEscape);
     }, [showStockSummary]);
-    
-    // Calcular stock total desde Firebase y obtener datos de talles
+
+    /** Calcula el stock total del producto desde Firebase, suma el stock de todos los talles y locales disponibles
+     */
     useEffect(() => {
         const fetchTotalStock = async () => {
             if (!product.id) return;
-            
+
             try {
                 const docRef = doc(db, 'items', product.id);
                 const snap = await getDoc(docRef);
-                
+
                 if (snap.exists()) {
                     const data = snap.data();
-                    
-                    // Nuevo formato: talles es un map de maps con stock como objeto
+
+                    // talles es un objeto con stock distribuido por locales
                     if (data.talles && typeof data.talles === 'object') {
                         let total = 0;
                         Object.keys(data.talles).forEach(talle => {
@@ -68,7 +82,6 @@ const ItemDetail = ({ product }) => {
                         });
                         setTotalStock(total);
                     } else {
-                        // Fallback al stock general si no hay talles
                         setTotalStock(data.stock || 0);
                     }
                 }
@@ -81,28 +94,30 @@ const ItemDetail = ({ product }) => {
         fetchTotalStock();
     }, [product.id]);
 
-    // Calcular stock de todos los talles para la renderización
+    /** Calcula el stock de todos los talles disponibles y crea un mapa con el stock total y detallado de cada talle
+     */
     useEffect(() => {
         const fetchAllTallesStock = async () => {
             if (!product.id || sizes.length === 0) return;
-            
+
             try {
                 const docRef = doc(db, 'items', product.id);
                 const snap = await getDoc(docRef);
-                
+
                 if (snap.exists()) {
                     const data = snap.data();
-                    const stockMap = {};
-                    const detailedMap = {};
-                    
-                    // Calcular stock para cada talle
+                    const stockMap = {}; // Stock total por talle
+                    const detailedMap = {}; // Stock detallado por talle y local
+
+                    // Calcular stock para cada talle disponible
                     sizes.forEach(talle => {
                         if (data.talles && data.talles[talle] && data.talles[talle].stock) {
                             const stockObj = data.talles[talle].stock;
                             if (stockObj && typeof stockObj === 'object') {
+                                // Sumar stock de todos los locales para este talle
                                 const talleStock = Object.values(stockObj).reduce((acc, curr) => acc + (Number(curr) || 0), 0);
                                 stockMap[talle] = talleStock;
-                                // Guardar también el detalle por local
+                                // Guardar también el detalle por local para mostrar en el modal
                                 detailedMap[talle] = stockObj;
                             } else {
                                 stockMap[talle] = 0;
@@ -113,7 +128,7 @@ const ItemDetail = ({ product }) => {
                             detailedMap[talle] = {};
                         }
                     });
-                    
+
                     setStockByTalle(stockMap);
                     setDetailedStockByTalle(detailedMap);
                 }
@@ -126,34 +141,35 @@ const ItemDetail = ({ product }) => {
 
         fetchAllTallesStock();
     }, [product.id, sizes]);
-    
-    // Obtener stock por talle desde Firebase
+
+    /** obtener el stock específico del talle seleccionado y se ejecuta cuando el usuario selecciona un talle diferente
+     */
     useEffect(() => {
         const fetchStockBySize = async () => {
             if (!selectedTalle || !product.id) return;
-            
+
             try {
                 const docRef = doc(db, 'items', product.id);
                 const snap = await getDoc(docRef);
-                
+
                 if (snap.exists()) {
                     const data = snap.data();
-                    
-                    // Nuevo formato: buscar el talle específico en el map
+
+                    // Buscar el stock del talle específico seleccionado
                     if (data.talles && data.talles[selectedTalle] && data.talles[selectedTalle].stock) {
                         const stockObj = data.talles[selectedTalle].stock;
                         if (stockObj && typeof stockObj === 'object') {
                             // Sumar stock de todos los locales para este talle
                             const talleStock = Object.values(stockObj).reduce((acc, curr) => acc + (Number(curr) || 0), 0);
                             setStockBySize(talleStock);
-                            // Guardar también el desglose por local
+                            // Guardar también el desglose por local para mostrar información detallada
                             setStockByLocationForTalle(stockObj);
                         } else {
                             setStockBySize(0);
                             setStockByLocationForTalle({});
                         }
                     } else {
-                        // Fallback al stock general si no se encuentra el talle
+                        // Fallback al stock general si no se encuentra la estructura del talle
                         setStockBySize(data.stock || 0);
                         setStockByLocationForTalle({});
                     }
@@ -166,33 +182,36 @@ const ItemDetail = ({ product }) => {
 
         fetchStockBySize();
     }, [selectedTalle, product.id]);
-    
-    // Resetear el contador cuando cambie el talle seleccionado
+
+    /** Resetea el contador cuando cambie el talle seleccionado yfuerza un re-render del componente ItemCount
+     */
     useEffect(() => {
         setCountKey(prev => prev + 1);
     }, [selectedTalle]);
 
-    // Limpiar error cuando se selecciona un talle
+    /** limpiar mensajes de error cuando se selecciona un talle
+     */
     useEffect(() => {
         if (selectedTalle && error === 'Por favor, selecciona un talle antes de agregar al carrito') {
             setError('');
         }
     }, [selectedTalle, error]);
-    
-    // Calcular stock disponible considerando lo que ya está en el carrito
+
+    /** Función para calcular el stock disponible considerando lo que ya está en el carrito. Evita que el usuario agregue más productos de los disponibles
+     */
     const getAvailableStock = () => {
         let baseStock = selectedTalle ? stockBySize : totalStock;
         if (baseStock === null || baseStock === undefined) return 0;
-        
+
         // Obtener la cantidad ya en el carrito para este producto y talle específico
-        const cartItem = cart.find(item => 
+        const cartItem = cart.find(item =>
             item.id === product.id && item.talle === selectedTalle
         );
         const stockInCart = cartItem ? cartItem.stock : 0;
-        
+
         return Math.max(0, baseStock - stockInCart);
     };
-    
+
     const nextImage = () => {
         setCurrentImageIndex((prev) => (prev + 1) % gallery.length);
     };
@@ -201,6 +220,7 @@ const ItemDetail = ({ product }) => {
         setCurrentImageIndex((prev) => (prev - 1 + gallery.length) % gallery.length);
     };
 
+    /** Maneja navegación por teclado en la galería fullscreen*/
     const handleKeyDown = (e) => {
         if (isFullScreen) {
             if (e.key === 'ArrowRight') nextImage();
@@ -209,37 +229,41 @@ const ItemDetail = ({ product }) => {
         }
     };
 
+
     useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [isFullScreen]);
 
+    /*** Función para abrir la galería en modo fullscreen*/
     const handleImageClick = () => {
         setIsFullScreen(true);
     };
 
+    /** Agregar productos al carrito. Incluye todas las validaciones necesarias: talle, cantidad y stock disponible
+     */
     const handleOnAdd = async (stock) => {
         setError('');
-        
-        // Validar que se haya seleccionado un talle si el producto tiene talles
+
+        // VVerificar que se haya seleccionado un talle si el producto tiene talles
         if (sizes.length > 0 && !selectedTalle) {
             setError('Por favor, selecciona un talle antes de agregar al carrito');
             return;
         }
 
-        // Validar que la cantidad sea válida
+        // Verificar que la cantidad sea válida
         if (stock <= 0) {
             setError('La cantidad debe ser mayor a 0');
             return;
         }
 
-        // Validar stock disponible antes de agregar
+        // Verificar stock disponible antes de agregar
         const stockDisponible = getAvailableStock();
         if (stock > stockDisponible) {
             let errorMsg = `Solo hay ${stockDisponible} unidades disponibles`;
             if (selectedTalle) {
                 errorMsg += ` para el talle ${selectedTalle}`;
-                // Agregar información de locales si está disponible
+                // Agregar información detallada de disponibilidad por local
                 if (Object.keys(stockByLocationForTalle).length > 0) {
                     const locales = Object.entries(stockByLocationForTalle)
                         .filter(([, cantidad]) => cantidad > 0)
@@ -253,16 +277,12 @@ const ItemDetail = ({ product }) => {
             setError(errorMsg);
             return;
         }
-        
+
         const res = await addItemWithStock(product, stock, selectedTalle);
         if (res.success) {
-            setStockAdded(prev => prev + stock); // Acumular la cantidad agregada
-            // Limpiar error en caso de éxito
-            setError('');
-            
-            // Opcional: Mostrar mensaje de éxito temporal
-            // setError(`✅ ${stock} ${stock === 1 ? 'producto agregado' : 'productos agregados'} al carrito`);
-            // setTimeout(() => setError(''), 3000);
+            setStockAdded(prev => prev + stock); 
+            setError(''); 
+
         } else {
             setError(res.message || 'Error al agregar al carrito');
         }
@@ -278,10 +298,12 @@ const ItemDetail = ({ product }) => {
                         alt={product.title}
                         onClick={handleImageClick}
                     />
+
+                    {/* Modal de galería en fullscreen */}
                     {isFullScreen && (
                         <div className="fullscreen-overlay" onClick={() => setIsFullScreen(false)}>
                             <div className="fullscreen-content">
-                                <button 
+                                <button
                                     className="carousel-button prev"
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -290,12 +312,14 @@ const ItemDetail = ({ product }) => {
                                 >
                                     ‹
                                 </button>
+
                                 <img
                                     src={gallery[currentImageIndex]}
                                     alt={product.title}
                                     className="fullscreen-image"
                                 />
-                                <button 
+
+                                <button
                                     className="carousel-button next"
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -304,7 +328,7 @@ const ItemDetail = ({ product }) => {
                                 >
                                     ›
                                 </button>
-                                <button 
+                                <button
                                     className="close-fullscreen"
                                     onClick={(e) => {
                                         e.stopPropagation();
@@ -396,7 +420,7 @@ const ItemDetail = ({ product }) => {
                                     </div>
                                 </div>
                             )}
-                            
+
                         </div>
                     )}
                     <div className="detail-stock">
@@ -432,8 +456,8 @@ const ItemDetail = ({ product }) => {
 
             {/* Modal de Stock */}
             {showStockSummary && (
-                <div 
-                    className="stock-modal-overlay" 
+                <div
+                    className="stock-modal-overlay"
                     onClick={(e) => {
                         if (e.target === e.currentTarget) {
                             setShowStockSummary(false);
@@ -469,7 +493,7 @@ const ItemDetail = ({ product }) => {
                                                 <div className="stock-talle-total">
                                                     Total: {cantidad} {cantidad === 1 ? 'unidad' : 'unidades'}
                                                 </div>
-                                                
+
                                                 {cantidad > 0 ? (
                                                     <div className="stock-locations-section">
                                                         <div className="stock-locations-title">

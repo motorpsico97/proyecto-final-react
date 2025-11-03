@@ -7,7 +7,6 @@ import SearchBar from './SearchBar';
 import '../styles/NavBar.css';
 import logo from '../assets/logo.png';
 
-// Helper: valores únicos (case-insensitive) conservando el primer formato visto
 const uniques = (values) => {
     const map = new Map();
     for (const v of values) {

@@ -23,54 +23,54 @@ const ItemListContainer = () => {
         const fetchProducts = async () => {
             try {
                 const productsRef = collection(db, 'items');
-                
+
                 // Primero obtenemos todos los productos para validar las opciones disponibles
                 const allSnapshot = await getDocs(productsRef);
                 const allDocs = allSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                
+
                 // Extraer valores únicos
                 const uniqueCategories = [...new Set(allDocs.map(item => item.categoryId).filter(Boolean))];
                 const uniqueMarcas = [...new Set(allDocs.map(item => item.marca).filter(Boolean))];
                 const uniqueGeneros = [...new Set(allDocs.map(item => item.genero).filter(Boolean))];
-                
+
                 setValidOptions({
                     categories: uniqueCategories,
                     marcas: uniqueMarcas,
                     generos: uniqueGeneros
                 });
-                
+
                 if (categoryId) {
                     const decodedCategory = decodeURIComponent(categoryId);
-                    
+
                     if (!uniqueCategories.includes(decodedCategory)) {
                         setNotFound(true);
                         return;
                     }
-                    
+
                     // Filtrar por categoría
                     const filteredProducts = allDocs.filter(item => item.categoryId === decodedCategory);
                     setProducts(filteredProducts);
                     document.title = `${decodedCategory} | Shoes Store`;
                 } else if (marca) {
                     const decodedBrand = decodeURIComponent(marca);
-                    
+
                     if (!uniqueMarcas.includes(decodedBrand)) {
                         setNotFound(true);
                         return;
                     }
-                    
+
                     // Filtrar por marca
                     const filteredProducts = allDocs.filter(item => item.marca === decodedBrand);
                     setProducts(filteredProducts);
                     document.title = `${decodedBrand} | Shoes Store`;
                 } else if (genero) {
                     const decodedGender = decodeURIComponent(genero);
-                    
+
                     if (!uniqueGeneros.includes(decodedGender)) {
                         setNotFound(true);
                         return;
                     }
-                    
+
                     // Filtrar por género
                     const filteredProducts = allDocs.filter(item => item.genero === decodedGender);
                     setProducts(filteredProducts);
@@ -108,10 +108,10 @@ const ItemListContainer = () => {
         <div className="item-list-container">
             <div className="products-section">
                 <h2 className="item-list-title">
-                    {categoryId ? `${decodeURIComponent(categoryId)}` : 
-                     marca ? `${decodeURIComponent(marca)}` : 
-                     genero ? `${decodeURIComponent(genero)}` : 
-                     'Nuestros productos'}
+                    {categoryId ? `${decodeURIComponent(categoryId)}` :
+                        marca ? `${decodeURIComponent(marca)}` :
+                            genero ? `${decodeURIComponent(genero)}` :
+                                'Nuestros productos'}
                 </h2>
                 <ItemList products={products} />
             </div>
