@@ -18,7 +18,10 @@
   flex-direction: row;
 }
 
-
+.detail-marca{
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
 
 .detail-image-container {
   flex-shrink: 0;

@@ -354,6 +354,7 @@ const ItemDetail = ({ product }) => {
                 </div>
                 <div className="detail-info">
                     <h2 className="detail-title">{product.title}</h2>
+                    <p className="detail-marca">{product.marca}</p>
                     <p className="detail-description">{product.description}</p>
                     <div className="detail-price">
                         ${product.price}
