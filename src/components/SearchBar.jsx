@@ -2,30 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/SearchBar.css';
 
-/**
- * Componente SearchBar - Barra de búsqueda inteligente
- * 
- * Este componente proporciona una interfaz de búsqueda que permite a los usuarios
- * buscar productos por nombre, marca, categoría, etc.
- * 
- * Características principales:
- * - Búsqueda en tiempo real con navegación por URL
- * - Botón de limpieza para restablecer resultados
- * - Manejo de estado de búsqueda con React Router
- * - Interfaz responsiva y accesible
- * - Codificación URL segura para términos de búsqueda
- */
 const SearchBar = () => {
-    // Estado para manejar el término de búsqueda actual
     const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate(); // Hook para navegación programática
-
-    /**
-     * Manejador de envío del formulario de búsqueda
-     * Navega a la página principal con el término de búsqueda como parámetro URL
-     * 
-     * @param {Event} e - Evento de envío del formulario
-     */
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();

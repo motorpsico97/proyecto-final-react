@@ -280,8 +280,8 @@ const ItemDetail = ({ product }) => {
 
         const res = await addItemWithStock(product, stock, selectedTalle);
         if (res.success) {
-            setStockAdded(prev => prev + stock); 
-            setError(''); 
+            setStockAdded(prev => prev + stock);
+            setError('');
 
         } else {
             setError(res.message || 'Error al agregar al carrito');
@@ -354,7 +354,7 @@ const ItemDetail = ({ product }) => {
                 </div>
                 <div className="detail-info">
                     <h2 className="detail-title">{product.title}</h2>
-                    <p className="detail-marca">{product.marca}</p>
+                    <p className="detail-marca">{product.marca} - {product.genero}</p>
                     <p className="detail-description">{product.description}</p>
                     <div className="detail-price">
                         ${product.price}
